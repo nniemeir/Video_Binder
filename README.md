@@ -1,6 +1,10 @@
 # Video Binder
 The purpose of this script is to allow the user to search through their local media collection with fzf. The script currently supports showing preview images for the highlighted film/show through the kitty terminal graphics protocol.
 
+## **Demonstration**
+https://github.com/nniemeir/Video_Binder/assets/91906070/86063420-07d6-4b0c-b532-ec97670a1d43
+Copyrighted preview images have been omitted for legal reasons.
+
 ## **Configuration**
 Video Binder must be configured before it can function as intended.
 
