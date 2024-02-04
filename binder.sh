@@ -1,5 +1,5 @@
 #!/bin/bash
-# Author: Natalie Niemeir
+# Author: Niemeir
 promptMediaType() {
 clear
 echo "Select Type Of Media To Display: "
