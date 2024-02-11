@@ -1,10 +1,9 @@
 #!/bin/bash
-# Author: Niemeir
+# Author: Natalie Niemeir
 promptMediaType() {
 clear
-echo "Select Type Of Media To Display: "
-mediaType=$(echo -e "Films\nTelevision" | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --preview='
-file_path=images/media_types/{}
+mediaType=$(echo -e "Films\nTelevision" | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --prompt="Select Media Type: " --preview='
+file_path=images/video_types/{}
 file_name="${file_path%.*}"
 preview_file="${file_name}.png"
 if [ -e "$preview_file" ]; then
@@ -27,8 +26,7 @@ fi
 
 promptTV() {
 clear
-echo "Select a Program: "
-showSelection=$(ls $SHOWS_PATH | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --preview='
+showSelection=$(ls $SHOWS_PATH | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --prompt="Select Program: " --preview='
 file_path=images/shows/{}
 preview_file="${file_path}.png"
 
@@ -50,8 +48,7 @@ fi
 
 promptSeason() {
 clear
-echo "Select a Season of $showSelection: "
-seasonSelection=$(ls "$SHOWS_PATH/$showSelection" | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --preview='
+seasonSelection=$(ls "$SHOWS_PATH/$showSelection" | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --prompt="Select Season: " --preview='
 preview_file="images/shows/${showSelection}.png"
 if [ -e "$preview_file" ]; then
   kitty icat --clear --transfer-mode=stream --stdin=no --place=40x40@20x20 "$preview_file"
@@ -69,9 +66,8 @@ fi
 
 promptEpisode() {
 clear
-echo "Select an episode of $showSelection: "
 videoFiles=$(ls "$SHOWS_PATH/$showSelection/$seasonSelection/"*.{mkv,mp4} 2>/dev/null)
-episodeSelection=$(echo "$videoFiles" | xargs -I {} basename "{}" | sed 's/\.[^.]*$//' | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --preview='
+episodeSelection=$(echo "$videoFiles" | xargs -I {} basename "{}" | sed 's/\.[^.]*$//' | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --prompt="Select Episode: " --preview='
 preview_file="images/shows/${showSelection}.png"
 if [ -e "$preview_file" ]; then
   kitty icat --clear --transfer-mode=stream --stdin=no --place=40x40@20x20 "$preview_file"
@@ -91,10 +87,9 @@ promptVideo() {
 # Add any other extensions if present in your library
 videoFiles=$(ls "$MOVIES_PATH/"*.{mkv,mp4} 2>/dev/null)
 clear
-echo "Select a Film: "
 
 # Create the primary and preview fzf window
-videoSelection=$(echo "$videoFiles" | xargs -I {} basename "{}" | sed 's/\.[^.]*$//' | fzf --height=80% --padding=5,40,0,40 --layout=reverse --cycle --preview='
+videoSelection=$(echo "$videoFiles" | xargs -I {} basename "{}" | sed 's/\.[^.]*$//' | fzf --height=80% --padding=5,40,0,40 --layout=reverse --cycle --prompt="Select Film: " --preview='
 file_path=images/films/{}
 file_name="${file_path%.*}"
 preview_file="${file_name}.png"
