@@ -1,5 +1,5 @@
 #!/bin/bash
-# Author: Natalie Niemeir
+# Author: Jacob Niemeir <nniemeir@protonmail.com>
 promptMediaType() {
 clear
 mediaType=$(echo -e "Films\nTelevision" | fzf --delimiter , --with-nth -1 --height=80% --padding=5,40,0,40 --layout=reverse --cycle --prompt="Select Media Type: " --preview='
